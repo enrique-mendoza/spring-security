@@ -45,12 +45,18 @@ public class ApplicationSecurityConfig {
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails annaSmithUser = User.builder()
-                .username("annasmith")
-                .password(passwordEncoder.encode("password"))
+        UserDetails student = User.builder()
+                .username("student")
+                .password(passwordEncoder.encode("student123"))
                 .roles("STUDENT") // ROLE_STUDENT
                 .build();
 
-        return new InMemoryUserDetailsManager(annaSmithUser);
+        UserDetails admin = User.builder()
+                .username("admin")
+                .password(passwordEncoder.encode("admin123"))
+                .roles("ADMIN") // ROLE_ADMIN
+                .build();
+
+        return new InMemoryUserDetailsManager(student, admin);
     }
 }
