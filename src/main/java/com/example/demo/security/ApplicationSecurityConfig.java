@@ -38,6 +38,7 @@ public class ApplicationSecurityConfig {
         http
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/", "/index", "/index.html", "/css/*", "/js/*").permitAll()
+                        .requestMatchers("/api/**").hasRole(STUDENT.name())
                         .anyRequest()
                         .authenticated()
                 )
